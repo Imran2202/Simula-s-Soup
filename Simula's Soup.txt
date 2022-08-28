@@ -1,0 +1,86 @@
+// Written by Imran Ali
+// 5/28/2022
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practice
+{
+    internal class Program
+    {
+        //Ctreate a method return the seasoning, ingredient, and type from their respective methods
+	static (seasoning, ingredient, type) getsoup()
+        {
+            type usertype = gettype();
+            ingredient useringredient = getingredient();
+            seasoning userseasoning = getseasoning();
+            return (userseasoning, useringredient, usertype);
+        }
+        // Create a method to get user input for type
+	static type gettype()
+        {
+            
+            Console.WriteLine("What type would you like(Soup, Stew, Gumbo): ");
+            string user = Console.ReadLine();
+            if (user == "Soup")
+                return type.Soup;
+
+            else if (user == "Stew")
+                return type.Stew;
+            
+            else
+                return type.Gumbo;   
+        }
+        // Create a method to get user input for main ingredient
+	static ingredient getingredient()
+        {
+            Console.WriteLine("What main ingredient would you like(Mushroom, Chicken, Carrots, Potatoes): ");
+            string user = Console.ReadLine();
+            if (user == "Mushroom")
+                return ingredient.Mushroom;
+
+            else if (user == "Chicken")
+                return ingredient.Chicken;
+
+            else if (user == "Carrots")
+                return ingredient.Carrots;
+
+            else
+                return ingredient.Potatoes;
+        }
+        // Create a method to get user input for seasoning
+	static seasoning getseasoning()
+        {
+            Console.WriteLine("What seasoning would you like(Spicy, Salty, Sweet): ");
+            string user = Console.ReadLine();
+            if (user == "Sweet")
+                return seasoning.Sweet;
+
+            else if (user == "Salty")
+                return seasoning.Salty;
+
+            else
+                return seasoning.Spicy;
+        }
+
+        static void Main(string[] args)
+        {
+            // Create an array that stores each tuple for the three values
+	(seasoning, ingredient, type)[] soups = new (seasoning, ingredient, type)[3];
+            soups[0] = getsoup();
+            soups[1] = getsoup();
+            soups[2] = getsoup();
+            foreach ((seasoning, ingredient, type) soup in soups)
+                Console.WriteLine(soup);
+
+        }
+    }
+    enum type { Soup, Stew, Gumbo }
+    enum ingredient { Mushroom, Chicken, Carrots, Potatoes }
+    enum seasoning { Spicy, Salty, Sweet}
+
+}
